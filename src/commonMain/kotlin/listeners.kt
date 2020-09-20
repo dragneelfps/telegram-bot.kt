@@ -1,5 +1,6 @@
 package io.nooblabs.kbot
 
+import io.nooblabs.kbot.models.Message
 import io.nooblabs.kbot.models.Update
 import io.nooblabs.kbot.network.TClient
 
@@ -18,4 +19,20 @@ fun ListenerConfig.generic(block: suspend (TClient, Update) -> Unit) {
         }
     }
     addListener(listener = genericListener)
+}
+
+
+fun ListenerConfig.text(match: Regex, block: suspend (TClient, Message, MatchResult) -> Unit) {
+    val regexListener = object : Listener {
+        override fun shouldProcess(update: Update) = update.message?.text?.let { match matches it } ?: false
+
+        override suspend fun process(update: Update) {
+            block(tClient, update.message!!, match.find(update.message.text!!)!!)
+        }
+    }
+    addListener(listener = regexListener)
+}
+
+fun ListenerConfig.text(match: String, block: suspend (TClient, Message, MatchResult) -> Unit) {
+    text(match = match.toRegex(), block)
 }

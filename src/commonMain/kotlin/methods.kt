@@ -43,7 +43,7 @@ class SendMessage private constructor(
     }
 
     class SendMessageBuilder {
-        var parse_mode: String? = "MarkdownV2"
+        var parse_mode: String? = "HTML"
         var disable_web_page_preview: Boolean? = null
         var disable_notification: Boolean? = null
         var reply_to_message_id: Long? = null
