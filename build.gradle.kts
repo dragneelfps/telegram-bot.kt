@@ -1,6 +1,7 @@
 plugins {
     kotlin("multiplatform") version "1.4.0"
     kotlin("plugin.serialization") version "1.4.0"
+    `maven-publish`
 }
 
 val ktor_version = "1.4.0"
@@ -15,7 +16,7 @@ repositories {
     maven(url = "https://kotlin.bintray.com/kotlinx/")
 }
 kotlin {
-    jvm("lib") {
+    jvm {
         compilations.all {
             kotlinOptions.jvmTarget = "13"
         }
@@ -29,7 +30,7 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9")
             }
         }
-        val libMain by getting {
+        val jvmMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-apache:$ktor_version")
                 implementation("io.ktor:ktor-client-logging-jvm:$ktor_version")
@@ -37,6 +38,6 @@ kotlin {
                 implementation("ch.qos.logback:logback-classic:1.2.3")
             }
         }
-        val libTest by getting
+        val jvmTest by getting
     }
 }
