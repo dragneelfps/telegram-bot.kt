@@ -1,6 +1,9 @@
 package io.nooblabs.kbot.network
 
 import io.ktor.client.*
+import io.ktor.client.features.json.*
+import io.ktor.client.features.json.serializer.*
+import io.ktor.client.features.logging.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.nooblabs.kbot.ArrayResponse
@@ -43,4 +46,13 @@ class TClient(
 
 val DEFAULT_ENDPOINT_BUILDER = { token: String, method: Any -> "https://api.telegram.org/bot$token/${method}" }
 
-expect val DEFAULT_HTTP_CLIENT: HttpClient
+val DEFAULT_HTTP_CLIENT: HttpClient = HttpClient {
+    install(Logging) {
+        level = LogLevel.BODY
+    }
+    install(JsonFeature) {
+        serializer = KotlinxSerializer(json = kotlinx.serialization.json.Json {
+            ignoreUnknownKeys = true
+        })
+    }
+}
