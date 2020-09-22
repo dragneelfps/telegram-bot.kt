@@ -47,9 +47,9 @@ class TClient(
 val DEFAULT_ENDPOINT_BUILDER = { token: String, method: Any -> "https://api.telegram.org/bot$token/${method}" }
 
 val DEFAULT_HTTP_CLIENT: HttpClient = HttpClient {
-    install(Logging) {
-        level = LogLevel.BODY
-    }
+//    install(Logging) {
+//        level = LogLevel.BODY
+//    }
     install(JsonFeature) {
         serializer = KotlinxSerializer(json = kotlinx.serialization.json.Json {
             ignoreUnknownKeys = true

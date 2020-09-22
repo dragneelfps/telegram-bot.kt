@@ -39,7 +39,6 @@ kotlin {
                 implementation("io.ktor:ktor-client-serialization:$ktor_version")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:$serialization_version")
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.1.0")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9")
             }
         }
         val jvmMain by getting {
@@ -48,6 +47,7 @@ kotlin {
                 implementation("io.ktor:ktor-client-logging-jvm:$ktor_version")
                 implementation("io.ktor:ktor-client-serialization-jvm:$ktor_version")
                 implementation("ch.qos.logback:logback-classic:1.2.3")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9")
             }
         }
         val jvmTest by getting
@@ -55,6 +55,7 @@ kotlin {
         val nativeMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-curl:$ktor_version")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9-native-mt")
             }
         }
         val nativeTest by getting

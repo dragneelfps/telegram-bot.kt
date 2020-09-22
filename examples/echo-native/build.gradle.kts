@@ -29,7 +29,7 @@ kotlin {
         val nativeMain by getting {
             dependencies {
                 implementation(project(":"))
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9-native-mt")
             }
         }
         val nativeTest by getting
