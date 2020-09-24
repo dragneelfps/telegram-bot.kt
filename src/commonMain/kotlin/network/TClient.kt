@@ -1,6 +1,9 @@
 package io.nooblabs.kbot.network
 
 import io.ktor.client.*
+import io.ktor.client.features.json.*
+import io.ktor.client.features.json.serializer.*
+import io.ktor.client.features.logging.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.nooblabs.kbot.ArrayResponse
