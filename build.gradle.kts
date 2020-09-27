@@ -13,7 +13,7 @@ group = "io.github.dragneelfps"
 val baseVersion = "0.0.1"
 val buildNumber = System.getenv("GITHUB_RUN_NUMBER")
 val snapshotVersion = when (buildNumber) {
-    null -> "$baseVersion-private"
+    null -> "$baseVersion-private-SNAPSHOT"
     else -> "$baseVersion.$buildNumber-SNAPSHOT"
 }
 version = System.getenv("RELEASE_VERSION") ?: snapshotVersion
