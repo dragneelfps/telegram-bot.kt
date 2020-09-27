@@ -70,6 +70,18 @@ kotlin {
     }
 }
 
+val dokkaJavadocJar by tasks.register<Jar>("dokkaJavadocJar") {
+    dependsOn(tasks.dokkaJavadoc)
+    from(tasks.dokkaJavadoc.flatMap { it.outputDirectory })
+    archiveClassifier.set("javadoc")
+}
+
+val dokkaHtmlJar by tasks.register<Jar>("dokkaHtmlJar") {
+    dependsOn(tasks.dokkaHtml)
+    from(tasks.dokkaJavadoc.flatMap { it.outputDirectory })
+    archiveClassifier.set("html")
+}
+
 publishing {
     repositories {
         maven {
@@ -84,8 +96,10 @@ publishing {
         }
     }
 
-    publications {
-        create<MavenPublication>("default") {
+    publications.withType<MavenPublication>().forEach {
+        it.apply {
+            artifact(dokkaJavadocJar)
+            artifact(dokkaHtmlJar)
             pom {
                 name.set("TelegramBot.kt")
                 description.set("Multiplatform Telegram Bot Library written in Kotlin")
@@ -117,5 +131,5 @@ signing {
     val signingKey: String? by project
     val signingPassword: String? by project
     useInMemoryPgpKeys(signingKey, signingPassword)
-    sign(publishing.publications["default"])
+    sign(publishing.publications)
 }
