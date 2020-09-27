@@ -1,4 +1,4 @@
-name: CI
+name: Build
 
 on:
   push:
@@ -24,6 +24,7 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build --stacktrace
     - name: Publish Snapshot
+      if: github.ref == 'refs/heads/master'
       run: ./gradlew publish --stacktrace
       env:
         OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
