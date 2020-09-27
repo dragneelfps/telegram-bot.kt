@@ -1,2 +1,2 @@
-package io.nooblabs.kbot
+package io.github.dragneelfps.kbot
 

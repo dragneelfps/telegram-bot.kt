@@ -1,8 +1,8 @@
-package io.nooblabs.kbot
+package io.github.dragneelfps.kbot
 
-import io.nooblabs.kbot.models.Update
-import io.nooblabs.kbot.models.lastUpdateId
-import io.nooblabs.kbot.network.TClient
+import io.github.dragneelfps.kbot.models.Update
+import io.github.dragneelfps.kbot.models.lastUpdateId
+import io.github.dragneelfps.kbot.network.TClient
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay

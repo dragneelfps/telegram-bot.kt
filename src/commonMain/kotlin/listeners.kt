@@ -1,8 +1,8 @@
-package io.nooblabs.kbot
+package io.github.dragneelfps.kbot
 
-import io.nooblabs.kbot.models.Message
-import io.nooblabs.kbot.models.Update
-import io.nooblabs.kbot.network.TClient
+import io.github.dragneelfps.kbot.models.Message
+import io.github.dragneelfps.kbot.models.Update
+import io.github.dragneelfps.kbot.network.TClient
 
 
 interface Listener {

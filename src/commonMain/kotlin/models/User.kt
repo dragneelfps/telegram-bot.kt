@@ -1,4 +1,4 @@
-package io.nooblabs.kbot.models
+package io.github.dragneelfps.kbot.models
 
 import kotlinx.serialization.Serializable
 

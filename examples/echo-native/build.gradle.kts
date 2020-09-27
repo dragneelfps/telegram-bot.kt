@@ -1,8 +1,6 @@
 plugins {
     kotlin("multiplatform")
 }
-group = "io.nooblabs"
-version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()

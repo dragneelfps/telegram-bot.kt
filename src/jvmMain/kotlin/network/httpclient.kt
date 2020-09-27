@@ -1,4 +1,4 @@
-package io.nooblabs.kbot.network
+package io.github.dragneelfps.kbot.network
 
 import io.ktor.client.*
 import io.ktor.client.features.json.*

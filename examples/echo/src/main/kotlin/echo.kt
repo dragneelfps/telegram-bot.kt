@@ -1,7 +1,7 @@
-import io.nooblabs.kbot.bot
-import io.nooblabs.kbot.models.Message
-import io.nooblabs.kbot.network.TClient
-import io.nooblabs.kbot.text
+import io.github.dragneelfps.kbot.bot
+import io.github.dragneelfps.kbot.models.Message
+import io.github.dragneelfps.kbot.network.TClient
+import io.github.dragneelfps.kbot.text
 import kotlinx.coroutines.runBlocking
 
 fun main(args: Array<String>) = runBlocking {

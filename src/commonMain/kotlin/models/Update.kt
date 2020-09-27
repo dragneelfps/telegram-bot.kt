@@ -1,6 +1,6 @@
-package io.nooblabs.kbot.models
+package io.github.dragneelfps.kbot.models
 
-import io.nooblabs.kbot.ArrayResponse
+import io.github.dragneelfps.kbot.ArrayResponse
 import kotlinx.serialization.Serializable
 
 @Serializable

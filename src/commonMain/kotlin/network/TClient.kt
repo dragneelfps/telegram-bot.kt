@@ -1,4 +1,4 @@
-package io.nooblabs.kbot.network
+package io.github.dragneelfps.kbot.network
 
 import io.ktor.client.*
 import io.ktor.client.features.json.*
@@ -6,14 +6,14 @@ import io.ktor.client.features.json.serializer.*
 import io.ktor.client.features.logging.*
 import io.ktor.client.request.*
 import io.ktor.http.*
-import io.nooblabs.kbot.ArrayResponse
-import io.nooblabs.kbot.GetUpdates
-import io.nooblabs.kbot.GetUpdates.GetUpdatesBuilder
-import io.nooblabs.kbot.SendMessage
-import io.nooblabs.kbot.SendMessage.SendMessageBuilder
-import io.nooblabs.kbot.SingleResult
-import io.nooblabs.kbot.models.Message
-import io.nooblabs.kbot.models.Update
+import io.github.dragneelfps.kbot.ArrayResponse
+import io.github.dragneelfps.kbot.GetUpdates
+import io.github.dragneelfps.kbot.GetUpdates.GetUpdatesBuilder
+import io.github.dragneelfps.kbot.SendMessage
+import io.github.dragneelfps.kbot.SendMessage.SendMessageBuilder
+import io.github.dragneelfps.kbot.SingleResult
+import io.github.dragneelfps.kbot.models.Message
+import io.github.dragneelfps.kbot.models.Update
 
 class TClient(
     private val token: String,

@@ -1,7 +1,7 @@
-package io.nooblabs.kbot
+package io.github.dragneelfps.kbot
 
-import io.nooblabs.kbot.Poller.Companion.DEFAULT_POLL_DELAY_SECONDS
-import io.nooblabs.kbot.network.TClient
+import io.github.dragneelfps.kbot.Poller.Companion.DEFAULT_POLL_DELAY_SECONDS
+import io.github.dragneelfps.kbot.network.TClient
 
 class Bot(private val poller: Poller?) {
 
