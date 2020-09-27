@@ -1,0 +1,24 @@
+name: Release
+
+on: 
+  workflow_dispatch:
+    inputs:
+      version:
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v2
+        
+      - name: Publish
+        run: ./gradlew publish
+        env:
+           RELEASE_VERSION: ${{ github.event.inputs.version }}
+           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+           ORG_GRADLE_PROJECT_signingKey: ${{ secrets.SIGNING_KEY }}
+           ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.SIGNING_PASSWORD }}
