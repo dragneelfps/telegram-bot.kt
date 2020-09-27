@@ -10,7 +10,13 @@ val ktor_version = "1.4.0"
 val serialization_version = "1.0.0-RC"
 
 group = "io.github.dragneelfps"
-version = System.getenv("RELEASE_VERSION") ?: "private"
+val baseVersion = "0.0.1"
+val buildNumber = System.getenv("GITHUB_RUN_NUMBER")
+val snapshotVersion = when (buildNumber) {
+    null -> "$baseVersion-private"
+    else -> "$baseVersion.$buildNumber-SNAPSHOT"
+}
+version = System.getenv("RELEASE_VERSION") ?: snapshotVersion
 
 repositories {
     mavenCentral()
