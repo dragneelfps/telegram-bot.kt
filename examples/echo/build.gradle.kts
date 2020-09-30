@@ -1,5 +1,10 @@
 plugins {
+    application
     kotlin("jvm")
+}
+
+application {
+    mainClassName = "EchoKt"
 }
 
 repositories {
