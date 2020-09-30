@@ -31,12 +31,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
       - name: Build with Gradle
         run: ./gradlew build --stacktrace
-      - name: Publish Snapshot
+      - name: Publish
         if: github.ref == 'refs/heads/master'
         run: ./gradlew publishMacosX64PublicationToMavenRepository
         env:
+          RELEASE_VERSION: ${{ github.event.inputs.version }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
           ORG_GRADLE_PROJECT_signingKey: ${{ secrets.SIGNING_KEY }}
@@ -55,6 +58,7 @@ jobs:
         if: github.ref == 'refs/heads/master'
         run: ./gradlew publishMingwX64PublicationToMavenRepository
         env:
+          RELEASE_VERSION: ${{ github.event.inputs.version }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
           ORG_GRADLE_PROJECT_signingKey: ${{ secrets.SIGNING_KEY }}
