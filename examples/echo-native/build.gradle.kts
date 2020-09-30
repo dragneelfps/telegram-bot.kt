@@ -26,7 +26,7 @@ kotlin {
     sourceSets {
         val nativeMain by getting {
             dependencies {
-                implementation(project(":"))
+                implementation("io.github.dragneelfps:telegram-bot.kt:+")
             }
         }
         val nativeTest by getting

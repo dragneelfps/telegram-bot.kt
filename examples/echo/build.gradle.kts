@@ -1,6 +1,6 @@
 plugins {
     application
-    kotlin("jvm")
+    kotlin("jvm") version "1.4.10"
 }
 
 application {
@@ -13,7 +13,6 @@ repositories {
 }
 
 dependencies {
-    implementation(project(":"))
+    implementation("io.github.dragneelfps:telegram-bot.kt-jvm:+")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9")
-
 }
