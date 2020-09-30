@@ -1,12 +1,13 @@
 # telegram-bot.kt
 
-![Build](https://github.com/dragneelfps/telegram-bot.kt/workflows/Build/badge.svg) ![Release](https://github.com/dragneelfps/telegram-bot.kt/workflows/Release/badge.svg)
+![Build](https://github.com/dragneelfps/telegram-bot.kt/workflows/Build/badge.svg)
+[<img src="https://img.shields.io/maven-central/v/io.github.dragneelfps/telegram-bot.kt.svg?label=latest%20release"/>](https://search.maven.org/search?q=io.github.dragneelfps%20telegram-bot.kt)
 
 Multiplatform Telegram Bot Library written in Kotlin
 
 ## Using in your projects
 
-The libraries are published to [Maven Central](https://search.maven.org/search?q=io.github.dragneelfps).
+The libraries are published to [Maven Central](https://search.maven.org/search?q=io.github.dragneelfps%20telegram-bot.kt).
 
 ### Maven
 
@@ -47,8 +48,3 @@ dependencies {
     implementation("io.github.dragneelfps:telegram-bot.kt:[latest_version]")
 }
 ```
-
-## Using examples
-
-- echo `./gradlew :examples:echo:run`
-- echo-native `./gradlew :examples:echo-native:runDebugExecutableNative`
