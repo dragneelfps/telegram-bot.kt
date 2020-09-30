@@ -33,8 +33,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-      - name: Build with Gradle
-        run: ./gradlew build --stacktrace
       - name: Publish
         if: github.ref == 'refs/heads/master'
         run: ./gradlew publishMacosX64PublicationToMavenRepository
@@ -52,8 +50,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Build with Gradle
-        run: ./gradlew build --stacktrace
       - name: Publish Snapshot
         if: github.ref == 'refs/heads/master'
         run: ./gradlew publishMingwX64PublicationToMavenRepository
