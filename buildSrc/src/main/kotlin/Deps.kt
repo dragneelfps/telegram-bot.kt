@@ -10,6 +10,7 @@ object Deps {
         const val serializationVersion = "1.0.0-RC"
         const val dokkaVersion = "1.4.10"
         const val coroutinesVersion = "1.3.9"
+        const val detektVersion = "1.14.1"
     }
 
     object KtorClient {

@@ -24,6 +24,8 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build --stacktrace
+    - name: "detekt"
+      uses: natiginfo/action-detekt-all@1.14.1
     - name: Publish Snapshot
       if: github.ref == 'refs/heads/master'
       run: ./gradlew publish --stacktrace
