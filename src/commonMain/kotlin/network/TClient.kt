@@ -31,7 +31,7 @@ class TClient(
     }
 
     suspend fun sendMessage(
-        chat_id: Long,
+        chat_id: Int,
         text: String,
         block: SendMessageBuilder.() -> Unit = {}
     ): SingleResult<Message> {

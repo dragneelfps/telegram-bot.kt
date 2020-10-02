@@ -18,7 +18,7 @@ class Poller(
     private val listeners: List<Listener> = emptyList()
 ) {
     private var job: Job? = null
-    private var updateId: Long = 0L
+    private var updateId: Int = 0
 
     suspend fun startPolling() {
         cancelPollingIfRunning()

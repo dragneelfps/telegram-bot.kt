@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class User(
-    val id: Long,
+    val id: Int,
     val is_bot: Boolean,
     val first_name: String,
 )

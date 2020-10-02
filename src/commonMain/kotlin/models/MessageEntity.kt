@@ -7,10 +7,9 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class MessageEntity(
-    @Serializable(with = MessageEntityTypeAsStringSerializer::class)
-    val type: MessageEntityType,
-    val offset: Long,
-    val length: Long,
+    val type: String,
+    val offset: Int,
+    val length: Int,
     val url: String? = null,
     val user: User? = null,
     val language: String? = null,
