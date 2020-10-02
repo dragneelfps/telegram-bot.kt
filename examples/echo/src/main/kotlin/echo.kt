@@ -1,6 +1,5 @@
 import io.github.dragneelfps.kbot.bot
-import io.github.dragneelfps.kbot.models.Message
-import io.github.dragneelfps.kbot.network.TClient
+import io.github.dragneelfps.kbot.generic
 import io.github.dragneelfps.kbot.text
 import kotlinx.coroutines.runBlocking
 
@@ -9,22 +8,23 @@ fun main(args: Array<String>) = runBlocking {
         token = System.getenv("TOKEN")
         usePolling = true
         pollDelaySeconds = 2
+        logApiRequests = true
 
         listeners {
-//            generic { client: TClient, update: Update ->
-//                val chatId = update.message?.chat?.id!!
-//                val text = update.message?.text!!
-//                client.sendMessage(chatId, text)
-//            }
+            generic { client, update ->
+                val chatId = update.message?.chat?.id!!
+                val text = update.message?.text!!
+                client.sendMessage(chatId, text)
+            }
 
-            text(match = "start") { client: TClient, message: Message, _: MatchResult ->
+            text(match = "start") { client, message, _ ->
                 val chatId = message.chat?.id!!
                 client.sendMessage(chatId, "Lets gooo!!!!")
             }
 
-            text(match = """^url (\w+)$""".toRegex()) { client: TClient, message: Message, matchResult: MatchResult ->
+            text(match = """^url (\w+)$""") { client, message, matches ->
                 val chatId = message.chat?.id!!
-                client.sendMessage(chatId, matchResult.groups[1]!!.value)
+                client.sendMessage(chatId, matches.joinToString())
             }
         }
     }

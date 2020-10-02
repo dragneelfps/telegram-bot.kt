@@ -9,6 +9,7 @@ application {
 }
 
 repositories {
+    mavenLocal()
     mavenCentral()
     maven(url = "https://kotlin.bintray.com/kotlinx/")
 }
