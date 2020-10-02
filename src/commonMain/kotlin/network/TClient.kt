@@ -6,12 +6,14 @@ import io.github.dragneelfps.kbot.models.Update
 import io.ktor.client.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
+import io.ktor.client.features.logging.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 
 class TClient(
     private val token: String,
-    private val httpClient: HttpClient = DEFAULT_HTTP_CLIENT,
+    private val logApiRequests: Boolean,
+    private val httpClient: HttpClient = createHttpClient(logApiRequests),
     private val endpoint: (String, Any) -> String = DEFAULT_ENDPOINT_BUILDER,
 ) {
 
@@ -38,12 +40,14 @@ class TClient(
     }
 }
 
-val DEFAULT_ENDPOINT_BUILDER = { token: String, method: Any -> "https://api.telegram.org/bot$token/${method}" }
+private val DEFAULT_ENDPOINT_BUILDER = { token: String, method: Any -> "https://api.telegram.org/bot$token/${method}" }
 
-val DEFAULT_HTTP_CLIENT: HttpClient = HttpClient {
-//    install(Logging) {
-//        level = LogLevel.BODY
-//    }
+private fun createHttpClient(logApiRequests: Boolean) = HttpClient {
+    if (logApiRequests) {
+        install(Logging) {
+            level = LogLevel.BODY
+        }
+    }
     install(JsonFeature) {
         serializer = KotlinxSerializer(json = kotlinx.serialization.json.Json {
             ignoreUnknownKeys = true

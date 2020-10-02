@@ -3,7 +3,9 @@ package io.github.dragneelfps.kbot
 import io.github.dragneelfps.kbot.Poller.Companion.DEFAULT_POLL_DELAY_SECONDS
 import io.github.dragneelfps.kbot.network.TClient
 
-class Bot(private val poller: Poller?) {
+class Bot {
+
+    var poller: Poller? = null
 
     suspend fun startPolling() {
         poller?.startPolling()
@@ -17,6 +19,7 @@ class Bot(private val poller: Poller?) {
 class BotConfig {
     lateinit var token: String
     var usePolling = true
+    var logApiRequests = false
 
     // TODO: 9/19/2020 Switch to Duration when kotlinx.time becomes stable
     var pollDelaySeconds = DEFAULT_POLL_DELAY_SECONDS
@@ -29,18 +32,19 @@ class BotConfig {
 
     fun build(): Bot {
         val tClient = TClient(
-            token = token
+            token = token,
+            logApiRequests = logApiRequests
         )
         val listeners = ListenerConfig(tClient = tClient).apply(listenerConfig).build()
-        return Bot(
-            poller = if (usePolling) {
-                Poller(
+        return Bot().apply {
+            if (usePolling) {
+                poller = Poller(
                     tClient = tClient,
                     pollDelaySeconds = pollDelaySeconds,
                     listeners = listeners
                 )
-            } else null
-        )
+            }
+        }
     }
 }
 
