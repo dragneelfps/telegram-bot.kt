@@ -2,6 +2,7 @@ plugins {
     kotlin("multiplatform") version Deps.Versions.kotlinVersion
     kotlin("plugin.serialization") version Deps.Versions.kotlinVersion
     id("org.jetbrains.dokka") version Deps.Versions.dokkaVersion
+    id("io.gitlab.arturbosch.detekt") version Deps.Versions.detektVersion
     `maven-publish`
     signing
 }
@@ -76,6 +77,14 @@ kotlin {
             }
         }
         // Native END
+    }
+}
+
+detekt {
+    input = files("src/commonMain/kotlin")
+    reports {
+        html.enabled = true
+        xml.enabled = true
     }
 }
 

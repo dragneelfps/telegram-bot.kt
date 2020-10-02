@@ -24,6 +24,8 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build --stacktrace
+    - name: Check code style
+      run: ./gradlew check
     - name: Publish Snapshot
       if: github.ref == 'refs/heads/master'
       run: ./gradlew publish --stacktrace
