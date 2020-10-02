@@ -21,18 +21,21 @@ fun ListenerConfig.generic(block: suspend (TClient, Update) -> Unit) {
     addListener(listener = genericListener)
 }
 
-
-fun ListenerConfig.text(match: Regex, block: suspend (TClient, Message, MatchResult) -> Unit) {
+fun ListenerConfig.text(
+    match: String,
+    block: suspend (client: TClient, message: Message, matches: List<String>) -> Unit
+) {
+    val matchRegex = match.toRegex()
     val regexListener = object : Listener {
-        override fun shouldProcess(update: Update) = update.message?.text?.let { match matches it } ?: false
+        override fun shouldProcess(update: Update) = update.message?.text?.let { matchRegex matches it } ?: false
 
         override suspend fun process(update: Update) {
-            block(tClient, update.message!!, match.find(update.message.text!!)!!)
+            block(
+                tClient,
+                update.message!!,
+                matchRegex.find(update.message.text!!)?.destructured?.toList() ?: emptyList()
+            )
         }
     }
     addListener(listener = regexListener)
-}
-
-fun ListenerConfig.text(match: String, block: suspend (TClient, Message, MatchResult) -> Unit) {
-    text(match = match.toRegex(), block)
 }

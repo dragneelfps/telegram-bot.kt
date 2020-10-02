@@ -1,5 +1,5 @@
 object Ci {
-    private const val baseVersion = "1.0.0"
+    private const val baseVersion = "1.1.0"
     private val buildNumber = System.getenv("GITHUB_RUN_NUMBER")
     private val snapshotVersion = when (buildNumber) {
         null -> "$baseVersion-private-SNAPSHOT"
