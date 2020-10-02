@@ -3,28 +3,23 @@ package io.github.dragneelfps.kbot
 import kotlinx.serialization.Serializable
 
 
-sealed class Method
+sealed class Method {
+    abstract val id: String
+}
 
 @Serializable
-class GetUpdates private constructor(
-    val offset: Int?,
-    val limit: Int?,
-    val timeout: Int?,
-    val allowed_updates: List<String>?
-) : Method() {
+class GetUpdates private constructor() : Method() {
+
+    var offset: Int? = null
+    var limit: Int? = null
+    var timeout: Int? = null
+    var allowed_updates: List<String>? = null
 
     companion object {
-        override fun toString() = "getUpdates"
+        operator fun invoke(block: GetUpdates.() -> Unit) = GetUpdates().apply(block)
     }
 
-    class GetUpdatesBuilder {
-        var offset: Int? = null
-        var limit: Int? = null
-        var timeout: Int? = null
-        var allowed_updates: List<String>? = null
-
-        fun build() = GetUpdates(offset = offset, limit = limit, timeout = timeout, allowed_updates = allowed_updates)
-    }
+    override val id: String = "getUpdates"
 }
 
 
@@ -32,30 +27,18 @@ class GetUpdates private constructor(
 class SendMessage private constructor(
     val chat_id: Int,
     val text: String,
-    val parse_mode: String?,
-    val disable_web_page_preview: Boolean?,
-    val disable_notification: Boolean?,
-    val reply_to_message_id: Int?
 ) : Method() {
 
+
+    var parse_mode: String = "HTML"
+    var disable_web_page_preview: Boolean? = null
+    var disable_notification: Boolean? = null
+    var reply_to_message_id: Int? = null
+
     companion object {
-        override fun toString() = "sendMessage"
+        operator fun invoke(chat_id: Int, text: String, block: SendMessage.() -> Unit) =
+            SendMessage(chat_id, text).apply(block)
     }
 
-    class SendMessageBuilder {
-        var parse_mode: String? = "HTML"
-        var disable_web_page_preview: Boolean? = null
-        var disable_notification: Boolean? = null
-        var reply_to_message_id: Int? = null
-
-        fun build(chat_id: Int, text: String) =
-            SendMessage(
-                chat_id = chat_id,
-                text = text,
-                parse_mode = parse_mode,
-                disable_web_page_preview = disable_web_page_preview,
-                disable_notification = disable_notification,
-                reply_to_message_id = reply_to_message_id
-            )
-    }
+    override val id: String = "sendMessage"
 }

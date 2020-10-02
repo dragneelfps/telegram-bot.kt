@@ -1,19 +1,13 @@
 package io.github.dragneelfps.kbot.network
 
+import io.github.dragneelfps.kbot.*
+import io.github.dragneelfps.kbot.models.Message
+import io.github.dragneelfps.kbot.models.Update
 import io.ktor.client.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
-import io.ktor.client.features.logging.*
 import io.ktor.client.request.*
 import io.ktor.http.*
-import io.github.dragneelfps.kbot.ArrayResponse
-import io.github.dragneelfps.kbot.GetUpdates
-import io.github.dragneelfps.kbot.GetUpdates.GetUpdatesBuilder
-import io.github.dragneelfps.kbot.SendMessage
-import io.github.dragneelfps.kbot.SendMessage.SendMessageBuilder
-import io.github.dragneelfps.kbot.SingleResult
-import io.github.dragneelfps.kbot.models.Message
-import io.github.dragneelfps.kbot.models.Update
 
 class TClient(
     private val token: String,
@@ -21,23 +15,23 @@ class TClient(
     private val endpoint: (String, Any) -> String = DEFAULT_ENDPOINT_BUILDER,
 ) {
 
-    suspend fun getUpdate(block: GetUpdatesBuilder.() -> Unit = {}): ArrayResponse<Update> {
-        val req = GetUpdatesBuilder().apply(block).build()
-        return httpClient.post {
-            url(endpoint(token, GetUpdates))
-            contentType(ContentType.Application.Json)
-            body = req
-        }
+    suspend fun getUpdate(block: GetUpdates.() -> Unit = {}): ArrayResponse<Update> {
+        val req = GetUpdates(block)
+        return call(req)
     }
 
     suspend fun sendMessage(
         chat_id: Int,
         text: String,
-        block: SendMessageBuilder.() -> Unit = {}
+        block: SendMessage.() -> Unit = {}
     ): SingleResult<Message> {
-        val req = SendMessageBuilder().apply(block).build(chat_id, text)
+        val req = SendMessage(chat_id, text, block)
+        return call(req)
+    }
+
+    private suspend inline fun <reified T : Method, reified V> call(req: T): V {
         return httpClient.post {
-            url(endpoint(token, SendMessage))
+            url(endpoint(token, req.id))
             contentType(ContentType.Application.Json)
             body = req
         }
