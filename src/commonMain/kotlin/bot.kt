@@ -7,6 +7,8 @@ class Bot {
 
     var poller: Poller? = null
 
+    lateinit var client: TClient
+
     suspend fun startPolling() {
         poller?.startPolling()
     }
@@ -37,6 +39,7 @@ class BotConfig {
         )
         val listeners = ListenerConfig(tClient = tClient).apply(listenerConfig).build()
         return Bot().apply {
+            client = tClient
             if (usePolling) {
                 poller = Poller(
                     tClient = tClient,
