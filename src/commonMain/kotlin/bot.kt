@@ -1,13 +1,14 @@
 package io.github.dragneelfps.kbot
 
 import io.github.dragneelfps.kbot.Poller.Companion.DEFAULT_POLL_DELAY_SECONDS
+import io.github.dragneelfps.kbot.methods.ClientMethods
 import io.github.dragneelfps.kbot.network.TClient
 
 class Bot {
 
     var poller: Poller? = null
 
-    lateinit var client: TClient
+    lateinit var client: ClientMethods
 
     suspend fun startPolling() {
         poller?.startPolling()

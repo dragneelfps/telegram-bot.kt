@@ -41,7 +41,7 @@ class Poller(
         job?.cancel()
     }
 
-    private suspend fun processUpdate(updates: ArrayResponse<Update>) {
+    private suspend fun processUpdate(updates: ManyResult<Update>) {
         updates.result.forEach { update ->
             listeners.filter { it.shouldProcess(update) }
                 .forEach { it.process(update) }

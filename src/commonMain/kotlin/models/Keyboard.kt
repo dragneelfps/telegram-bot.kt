@@ -2,6 +2,9 @@ package io.github.dragneelfps.kbot.models
 
 import kotlinx.serialization.Serializable
 
+
+interface ReplyMarkup
+
 /**
  * [https://core.telegram.org/bots/api#replykeyboardmarkup]
  */
@@ -11,7 +14,7 @@ data class ReplyKeyboardMarkup(
     val resize_keyboard: Boolean? = null,
     val one_time_keyboard: Boolean? = null,
     val selective: Boolean? = null,
-)
+): ReplyMarkup
 
 /**
  * [https://core.telegram.org/bots/api#keyboardbutton]
@@ -39,7 +42,7 @@ data class KeyboardButtonPollType(
 data class ReplyKeyboardRemove(
     val remove_keyboard: Boolean,
     val selective: Boolean? = null,
-)
+): ReplyMarkup
 
 /**
  * [https://core.telegram.org/bots/api#inlinekeyboardmarkup]
@@ -47,7 +50,7 @@ data class ReplyKeyboardRemove(
 @Serializable
 data class InlineKeyboardMarkup(
     val inline_keyboard: List<List<InlineKeyboardButton>> = emptyList()
-)
+): ReplyMarkup
 
 /**
  * [https://core.telegram.org/bots/api#inlinekeyboardbutton]
@@ -63,3 +66,12 @@ data class InlineKeyboardButton(
     val callback_game: CallbackGame? = null,
     val pay: String? = null,
 )
+
+/**
+ * [https://core.telegram.org/bots/api#forcereply]
+ */
+@Serializable
+data class ForceReply(
+    val force_reply: Boolean,
+    val selective: Boolean? = null,
+): ReplyMarkup

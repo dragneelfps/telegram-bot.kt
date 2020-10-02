@@ -1,8 +1,11 @@
 package io.github.dragneelfps.kbot.network
 
-import io.github.dragneelfps.kbot.*
+import io.github.dragneelfps.kbot.ManyResult
+import io.github.dragneelfps.kbot.SingleResult
+import io.github.dragneelfps.kbot.methods.*
 import io.github.dragneelfps.kbot.models.Message
 import io.github.dragneelfps.kbot.models.Update
+import io.github.dragneelfps.kbot.models.User
 import io.ktor.client.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
@@ -15,27 +18,33 @@ class TClient(
     private val logApiRequests: Boolean,
     private val httpClient: HttpClient = createHttpClient(logApiRequests),
     private val endpoint: (String, Any) -> String = DEFAULT_ENDPOINT_BUILDER,
-) {
+) : ClientMethods {
 
-    suspend fun getUpdate(block: GetUpdates.() -> Unit = {}): ArrayResponse<Update> {
-        val req = GetUpdates(block)
-        return call(req)
-    }
+    override suspend fun getUpdate(block: GetUpdates.() -> Unit): ManyResult<Update> = GetUpdates(block).call()
 
-    suspend fun sendMessage(
+    override suspend fun getMe(): SingleResult<User> = GetMe.call()
+
+    override suspend fun sendMessage(
         chat_id: Int,
         text: String,
-        block: SendMessage.() -> Unit = {}
-    ): SingleResult<Message> {
-        val req = SendMessage(chat_id, text, block)
-        return call(req)
-    }
+        block: SendMessage.() -> Unit
+    ): SingleResult<Message> = SendMessage(chat_id, text, block).call()
 
-    private suspend inline fun <reified T : Method, reified V> call(req: T): V {
+    override suspend fun forwardMessage(
+        chat_id: Int,
+        from_chat_id: Int,
+        message_id: Int,
+        block: ForwardMessage.() -> Unit
+    ): SingleResult<Message> = ForwardMessage(chat_id, from_chat_id, message_id, block).call()
+
+    override suspend fun sendPhoto(chat_id: Int, photo: String, block: SendPhoto.() -> Unit): SingleResult<Message> =
+        SendPhoto(chat_id, photo, block).call()
+
+    private suspend inline fun <reified V> MethodData.call(): V {
         return httpClient.post {
-            url(endpoint(token, req.id))
+            url(endpoint(token, id))
             contentType(ContentType.Application.Json)
-            body = req
+            body = this@call
         }
     }
 }

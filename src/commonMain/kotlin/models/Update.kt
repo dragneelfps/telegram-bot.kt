@@ -1,6 +1,6 @@
 package io.github.dragneelfps.kbot.models
 
-import io.github.dragneelfps.kbot.ArrayResponse
+import io.github.dragneelfps.kbot.ManyResult
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -9,5 +9,5 @@ data class Update(
     val message: Message? = null
 )
 
-val ArrayResponse<Update>.lastUpdateId
+val ManyResult<Update>.lastUpdateId
     get() = result.lastOrNull()?.update_id
