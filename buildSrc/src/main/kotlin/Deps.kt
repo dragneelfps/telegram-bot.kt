@@ -5,12 +5,12 @@ import Deps.Versions.serializationVersion
 object Deps {
 
     object Versions {
-        const val kotlinVersion = "1.4.10"
-        const val ktorVersion = "1.4.0"
-        const val serializationVersion = "1.0.0-RC"
-        const val dokkaVersion = "1.4.10"
-        const val coroutinesVersion = "1.3.9"
-        const val detektVersion = "1.14.1"
+        const val kotlinVersion = "1.4.20"
+        const val ktorVersion = "1.4.2"
+        const val serializationVersion = "1.0.1"
+        const val dokkaVersion = "1.4.10.2"
+        const val coroutinesVersion = "1.4.2"
+        const val detektVersion = "1.15.0-RC1"
     }
 
     object KtorClient {
