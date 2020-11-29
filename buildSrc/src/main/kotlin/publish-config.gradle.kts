@@ -54,6 +54,7 @@ publishing {
 signing {
     val signingKey: String? by project
     val signingPassword: String? by project
+    @Suppress("UnstableApiUsage")
     useInMemoryPgpKeys(signingKey, signingPassword)
     sign(extensions.findByType<PublishingExtension>()!!.publications)
 }
