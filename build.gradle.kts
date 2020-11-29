@@ -3,8 +3,6 @@ plugins {
     kotlin("plugin.serialization") version Deps.Versions.kotlinVersion
     id("org.jetbrains.dokka") version Deps.Versions.dokkaVersion
     id("io.gitlab.arturbosch.detekt") version Deps.Versions.detektVersion
-    `maven-publish`
-    signing
 }
 
 group = "io.github.dragneelfps"
@@ -88,5 +86,5 @@ detekt {
     }
 }
 
-apply(from = "./gradle/dokka.gradle.kts")
-apply(from = "./gradle/publish.gradle.kts")
+apply(plugin = "dokka-config")
+apply(plugin = "publish-config")
