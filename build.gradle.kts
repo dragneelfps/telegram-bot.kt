@@ -19,10 +19,6 @@ kotlin {
             kotlinOptions.jvmTarget = "1.8"
         }
     }
-    js {
-        browser()
-        nodejs()
-    }
     macosX64()
     linuxX64()
     mingwX64()
@@ -43,11 +39,6 @@ kotlin {
                 implementation(Deps.KtorClient.loggingJvm)
                 implementation(Deps.KtorClient.serializationJvm)
                 implementation(Deps.logback)
-                implementation(Deps.Coroutines.core)
-            }
-        }
-        val jsMain by getting {
-            dependencies {
                 implementation(Deps.Coroutines.core)
             }
         }
