@@ -3,8 +3,6 @@ plugins {
     kotlin("plugin.serialization") version Deps.Versions.kotlinVersion
     id("org.jetbrains.dokka") version Deps.Versions.dokkaVersion
     id("io.gitlab.arturbosch.detekt") version Deps.Versions.detektVersion
-    `maven-publish`
-    signing
 }
 
 group = "io.github.dragneelfps"
@@ -21,14 +19,11 @@ kotlin {
             kotlinOptions.jvmTarget = "1.8"
         }
     }
-    js {
-        browser()
-        nodejs()
-    }
     macosX64()
     linuxX64()
     mingwX64()
 
+    @Suppress("UNUSED_VARIABLE")
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -45,11 +40,6 @@ kotlin {
                 implementation(Deps.KtorClient.loggingJvm)
                 implementation(Deps.KtorClient.serializationJvm)
                 implementation(Deps.logback)
-                implementation(Deps.Coroutines.core)
-            }
-        }
-        val jsMain by getting {
-            dependencies {
                 implementation(Deps.Coroutines.core)
             }
         }
@@ -88,5 +78,5 @@ detekt {
     }
 }
 
-apply(from = "./gradle/dokka.gradle.kts")
-apply(from = "./gradle/publish.gradle.kts")
+apply(plugin = "dokka-config")
+apply(plugin = "publish-config")
