@@ -3,6 +3,7 @@ plugins {
     kotlin("plugin.serialization") version Deps.Versions.kotlinVersion
     id("org.jetbrains.dokka") version Deps.Versions.dokkaVersion
     id("io.gitlab.arturbosch.detekt") version Deps.Versions.detektVersion
+    id("com.github.ben-manes.versions") version "0.39.0"
 }
 
 group = "io.github.dragneelfps"
@@ -10,7 +11,6 @@ version = Ci.version
 
 repositories {
     mavenCentral()
-    jcenter()
     maven(url = "https://kotlin.bintray.com/kotlinx/")
 }
 kotlin {

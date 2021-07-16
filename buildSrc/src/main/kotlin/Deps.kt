@@ -5,11 +5,11 @@ import Deps.Versions.serializationVersion
 object Deps {
 
     object Versions {
-        const val kotlinVersion = "1.4.20"
-        const val ktorVersion = "1.4.2"
-        const val serializationVersion = "1.0.1"
-        const val dokkaVersion = "1.4.10.2"
-        const val coroutinesVersion = "1.4.2"
+        const val kotlinVersion = "1.5.21"
+        const val ktorVersion = "1.6.1"
+        const val serializationVersion = "1.2.2"
+        const val dokkaVersion = "1.5.0"
+        const val coroutinesVersion = "1.5.1"
         const val detektVersion = "1.15.0-RC1"
     }
 
@@ -36,7 +36,7 @@ object Deps {
     const val logback = ("ch.qos.logback:logback-classic:1.2.3")
 
     const val kSerialization = "org.jetbrains.kotlinx:kotlinx-serialization-core:$serializationVersion"
-    const val kDateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.1.0"
+    const val kDateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.2.1"
 
 
 }
