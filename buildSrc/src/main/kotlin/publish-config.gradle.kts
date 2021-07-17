@@ -4,7 +4,6 @@ plugins {
 }
 
 val dokkaJavadocJar by tasks.existing
-val dokkaHtmlJar by tasks.existing
 
 publishing {
     repositories {
@@ -23,7 +22,6 @@ publishing {
     publications.withType<MavenPublication>().forEach {
         it.apply {
             artifact(dokkaJavadocJar.get())
-            artifact(dokkaHtmlJar.get())
             pom {
                 name.set("TelegramBot.kt")
                 description.set("Multiplatform Telegram Bot Library written in Kotlin")
