@@ -3,7 +3,7 @@ plugins {
     kotlin("plugin.serialization") version Deps.Versions.kotlinVersion
     id("org.jetbrains.dokka") version Deps.Versions.dokkaVersion
     id("io.gitlab.arturbosch.detekt") version Deps.Versions.detektVersion
-    id("com.github.ben-manes.versions") version "0.39.0"
+    id("com.github.ben-manes.versions") version Deps.Versions.benManes
 }
 
 group = "io.github.dragneelfps"
@@ -70,7 +70,6 @@ kotlin {
 }
 
 detekt {
-    input = files("src/commonMain/kotlin")
     reports {
         html.enabled = true
         xml.enabled = true
