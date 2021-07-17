@@ -1,7 +1,6 @@
 plugins {
     kotlin("multiplatform") version Deps.Versions.kotlinVersion
     kotlin("plugin.serialization") version Deps.Versions.kotlinVersion
-    id("org.jetbrains.dokka") version Deps.Versions.dokkaVersion
     id("io.gitlab.arturbosch.detekt") version Deps.Versions.detektVersion
     id("com.github.ben-manes.versions") version Deps.Versions.benManes
 }

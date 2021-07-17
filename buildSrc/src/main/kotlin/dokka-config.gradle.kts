@@ -2,11 +2,10 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
-val dokkaJavadoc by tasks.existing
-val dokkaHtml by tasks.existing
+val dokkaHtml by tasks.getting(org.jetbrains.dokka.gradle.DokkaTask::class)
 
 val dokkaJavadocJar by tasks.registering(Jar::class) {
     dependsOn(dokkaHtml)
-    from(dokkaHtml)
+    from(dokkaHtml.outputDirectory)
     archiveClassifier.set("javadoc")
 }

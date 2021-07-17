@@ -8,7 +8,6 @@ object Deps {
         const val kotlinVersion = "1.5.21"
         const val ktorVersion = "1.6.1"
         const val serializationVersion = "1.2.2"
-        const val dokkaVersion = "1.5.0"
         const val coroutinesVersion = "1.5.1"
         const val detektVersion = "1.18.0-RC2"
         const val benManes = "0.39.0"
